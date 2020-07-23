@@ -8,8 +8,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 //import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import org.omnifaces.util.Messages;
 
 import ec.edu.ups.ejb.RolFacade;
 //import ec.edu.ups.ejb.RolFacade;
@@ -42,6 +44,8 @@ public class UsuarioBean implements Serializable{
 	private String estado;
 	private String rol;
 	
+	private Usuario empleado;
+	
 	
 	public UsuarioBean() {}
 	
@@ -54,6 +58,7 @@ public class UsuarioBean implements Serializable{
 		listaClientes = ejbUsuarioFacade.listadoClientes();
 		System.out.println("lista de clientes: "+listaClientes);
 		System.out.println("rol: "+ejbRolFacade.find(1));
+		empleado = new Usuario();
 		
 	}
 	
@@ -112,19 +117,16 @@ public class UsuarioBean implements Serializable{
 	
 	
 	
-	public String iniciarSesion() {
-		
-		Usuario usuario = ejbUsuarioFacade.validarIngreso(this.correo, this.contrasena);
-		this.correo = "";
-		this.contrasena ="";
-		
-		if(usuario != null) {
-			return "exito"+usuario;
-			
-		}else {
-			return "fallo";
-		}
-	}
+	/*
+	 * public String iniciarSesion() {
+	 * 
+	 * Usuario usuario = ejbUsuarioFacade.validarIngreso(this.correo,
+	 * this.contrasena); this.correo = ""; this.contrasena ="";
+	 * 
+	 * if(usuario != null) { return "exito"+usuario;
+	 * 
+	 * }else { return "fallo"; } }
+	 */
 	
 	
 	public String remove(Usuario u) {
@@ -240,6 +242,46 @@ public class UsuarioBean implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	
+	
+	
+	public Usuario getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Usuario empleado) {
+		this.empleado = empleado;
+	}
+
+	public void iniciarSesion(){
+		System.out.println("INICIANDO SESION...");
+        Usuario emp;
+        String redireccion;
+            try {
+                emp = ejbUsuarioFacade.iniciarSesion(empleado);
+                System.out.println("EMPLEADO...."+emp.toString());
+                if (emp!=null){
+                    if (emp.getRol().getDescripcion().equals("administrador")){
+                    	System.out.println("ES ADMINISTRADOR...");
+                        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Empleado",emp);
+                        redireccion = "/Practica-4/PrivadaAdm/IndexAdmin.xhtml";
+                        FacesContext.getCurrentInstance().getExternalContext().redirect(redireccion);
+                        empleado=new Usuario();
+                    }else if (emp.getRol().getDescripcion().equals("empleado")){
+                    	System.out.println("ES EMPLEADO...");
+                        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Empleado",emp);
+                        redireccion = "/Practica-4/PrivadaEmp/GestionEmpleados.xhtml";
+                        FacesContext.getCurrentInstance().getExternalContext().redirect(redireccion);
+                        empleado=new Usuario();
+                    }
+                }else {
+                    Messages.create("Error!").error().detail("Credenciales Incorrectas").add();
+                }
+            }catch (Exception e){
+
+            }
+    }
 	
 	
 }

@@ -69,6 +69,10 @@
 		</navigation-case>
 
 	</navigation-rule>
+	
+	
+	
+	
 
 	<navigation-rule>
 		<from-view-id>/PrivadaEmp/EditarClienteEm.xhtml</from-view-id>
@@ -108,6 +112,20 @@
 		<navigation-case>
 			<from-outcome>editadoB</from-outcome>
 			<to-view-id>/PrivadaAdm/BodegaAdmin.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/PrivadaAdm/VerBodega.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>productoAgregadoBodega</from-outcome>
+			<to-view-id>/PrivadaAdm/VerBodega.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>nn</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
 		</navigation-case>
 
 	</navigation-rule>

@@ -28,13 +28,13 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
-                  	<h:form>
+                  
+                  	<h:form class="user">
                   		<div class="form-group">
-                      		<h:inputText type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..."  value="#{usuarioBean.correo}"/>
+                      		<h:inputText type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..."  value="#{usuarioBean.empleado.correo}"/>
                     	</div>
                     	<div class="form-group">
-                      		<h:inputText type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" value="#{usuarioBean.contrasena}" />
+                      		<h:inputText type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" value="#{usuarioBean.empleado.contrasena}" />
                     	</div>
                     	<h:commandButton value="Iniciar Sesion" type="submit" action="#{usuarioBean.iniciarSesion}" class="btn btn-primary btn-user btn-block"/>
                     	<hr/>
@@ -46,7 +46,7 @@
                     	</a>
                   	</h:form>
       
-                  </form>
+                 
                   
                   <hr/>
                   <div class="text-center">
