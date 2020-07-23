@@ -41,5 +41,13 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     }
     
     
+    @SuppressWarnings("unchecked")
+	public List<Producto> listadoProdRest(){
+    	Query nq = em.createNativeQuery("select codigoproducto, marca, nombre, precioventa, stock, categoria_codigocategoria from producto", Producto.class);
+    	System.out.println("obteniendo nuevos productos: "+nq.getResultList());
+    	return (List<Producto>) nq.getResultList();
+    }
+    
+    
 
 }

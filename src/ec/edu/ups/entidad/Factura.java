@@ -23,7 +23,7 @@ public class Factura implements Serializable {
     @Transient
     private boolean editable;
 	
-
+    
 	@ManyToOne
 	@JoinColumn
 	private Persona persona;
