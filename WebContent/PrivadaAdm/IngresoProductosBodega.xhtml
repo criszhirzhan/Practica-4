@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Administracion Bodega</title>
+<link rel="stylesheet" type="text/css" href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+<link rel="stylesheet" href="/Practica-4/CONFIG2/css/sb-admin-2.min.css" />
+</head>
+<h:body id="page-top">
+	<div id="wrapper">
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+			<!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Practica-4/PrivadaAdm/IndexAdmin.xhtml">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Bienvenido <sup>2</sup></div>
+      </a>
+
+			
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="/Practica-4/Privada/RegistroUsuario.xhtml">
+						<i  class="fas fa-fw fa-tachometer-alt"></i>
+						<span>Inventario</span>
+					</a>
+				</li>
+				
+				<hr  class="sidebar-divider">
+					<div  class="sidebar-heading">
+						Acciones
+					</div>
+					
+					<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Empleados</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Administrar Empleados:</h6>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/RegistroUsuarioAdmin.xhtml">Registrar Empleado</a>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/ListarEmpleadosAdmin.xhtml">Ver Empleados</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Clientes</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Administrar Clientes:</h6>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/RegistrarClienteAdmin.xhtml">Registrar Cliente</a>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/ListarClientesAdmin.xhtml">Ver Clientes</a>
+            <!-- 
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+             -->
+          </div>
+        </div>
+      </li>
+      
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#inventario" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Inventario</span>
+        </a>
+        <div id="inventario" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Administrar Inventario:</h6>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/CategoriaAdmin.xhtml">Registrar categorias</a>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/ProductoAdmin.xhtml">Ingresar productos</a>
+            <!-- 
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+             -->
+          </div>
+        </div>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bodega" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Bodegas</span>
+        </a>
+        <div id="bodega" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Ingresar productos</h6>
+            <a class="collapse-item" href="/Practica-4/PrivadaAdm/BodegaAdmin.xhtml">Registrar producto</a>
+          </div>
+        </div>
+      </li>
+					
+				</hr>
+			</hr>
+		</ul>
+		<!-- Hasta aqui va la barra del al lado -->
+		<!-- Contenido central -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-8 col-lg-7">
+					<div class="card shadow mb-4">
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Factura Cabecera:</h6>
+							<div class="dropdown no-arrow"></div>
+						</div>
+						<div class="card-body">
+							<h:form>
+								<div class="form-group">
+								<label for="bodega">Bodega</label>
+									
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+		<div class="container">
+		<h1>Lista de Bodegas</h1>
+		
+	
+	
+		<div class="container">
+			<h4>Ingresar producto de Bodega</h4>
+				<form class="user">
+					<h:form styleClass="form">
+						<div class="form-group row">
+							<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
+							<h:selectOneMenu value="#{movimientoBodegaBean.productoID}">
+					 			<f:selectItems value="#{movimientoBodegaBean.listaProductos}" var="prodList" itemValue="#{prodList.codigoProducto}" itemLabel="#{prodList.nombre}"/>
+							</h:selectOneMenu>
+			
+						<label for="pwd" class="mb-2 mr-sm-2">Cantidad</label>
+						<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{movimientoBodegaBean.stock}"/>
+			
+		
+					</div>
+					<label for="pwd" class="mb-2 mr-sm-2">Bodega</label>
+						<h:selectOneMenu value="#{movimientoBodegaBean.bodegaID}">
+					 		<f:selectItems value="#{movimientoBodegaBean.listaBodegas}" var="bodeList" itemValue="#{bodeList.codigoBodega}" itemLabel="#{bodeList.nombre}"/>
+						</h:selectOneMenu>
+					<label for="pwd" class="mb-2 mr-sm-2"></label>
+					<br/>
+					<h:commandButton action="#{movimientoBodegaBean.add}" styleClass="btn btn-success" value="Añadir Producto" />
+				</h:form>
+			</form>
+			<br/>
+			<br/>
+			<br/>
+	</div>
+	
+		
+	</div>
+</div>
+
+	
+<!-- Bootstrap core JavaScript-->
+  <script src="/Practica-4/CONFIG2/vendor/jquery/jquery.min.js"></script>
+  <script src="/Practica-4/CONFIG2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/Practica-4/CONFIG2/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/Practica-4/CONFIG2/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/Practica-4/CONFIG2/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/Practica-4/CONFIG2/js/demo/chart-area-demo.js"></script>
+  <script src="/Practica-4/CONFIG2/js/demo/chart-pie-demo.js"></script>
+</h:body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+    version="2.3">
+    
+    <application>
+		<!-- This supports resources referenced from within css files e.g. url(../fonts/glyphicons) -->
+		<resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>
+	</application>
+
+
+	<navigation-rule>
+		<from-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editar</from-outcome>
+			<to-view-id>/PrivadaEmp/EditarClienteEm.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>actualizado</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>eliminado</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/PrivadaEmp/ListarFacturas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>modificarF</from-outcome>
+			<to-view-id>/PrivadaEmp/EditarFactura.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>borrarF</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarFacturas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/PrivadaEmp/EditarFactura.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>guardado</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarFacturas.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>nn</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/PrivadaEmp/Facturacion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>facturaCreada</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarFacturas.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>nn</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/PrivadaEmp/EditarClienteEm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>actualizado</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>nn</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+			<navigation-rule>
+		<from-view-id>/PrivadaEmp/RegistroClienteEmp.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>clienteR</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>nn</from-outcome>
+			<to-view-id>/PrivadaEmp/ListarClientesEmp.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+				<navigation-rule>
+		<from-view-id>/PrivadaAdm/BodegaAdmin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>verP</from-outcome>
+			<to-view-id>/PrivadaAdm/VerBodega.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editadoB</from-outcome>
+			<to-view-id>/PrivadaAdm/BodegaAdmin.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+</faces-config>

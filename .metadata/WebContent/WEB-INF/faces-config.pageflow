@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15954731703500" configfile="/Practica-4/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/ListarClientesEmp.xhtml" id="pf15954732098661" referenceLink="//@navigationRule.5/@navigationCase.1/@toViewId|" outlinks="pf15954732098662 pf15954732098663 pf15954732098664" inlinks="pf15954732098663 pf15954732098664 pf15954732098665 pf15954732098666 pf15954732098667 pf15954732098668 pf15954732098669 pf159547320986610" path="/PrivadaEmp/ListarClientesEmp.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/EditarClienteEm.xhtml" id="pf159547320986611" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15954732098667 pf15954732098668" inlinks="pf15954732098662" path="/PrivadaEmp/EditarClienteEm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/ListarFacturas.xhtml" id="pf159547320986612" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf159547320986613 pf159547320986614" inlinks="pf159547320986614 pf159547320986615 pf159547320986616" path="/PrivadaEmp/ListarFacturas.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/EditarFactura.xhtml" id="pf159547320986717" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf159547320986615 pf15954732098665" inlinks="pf159547320986613" path="/PrivadaEmp/EditarFactura.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/Facturacion.xhtml" id="pf159547320986718" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf159547320986616 pf15954732098666" path="/PrivadaEmp/Facturacion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaEmp/RegistroClienteEmp.xhtml" id="pf159547320986719" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15954732098669 pf159547320986610" path="/PrivadaEmp/RegistroClienteEmp.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaAdm/BodegaAdmin.xhtml" id="pf159547320986720" referenceLink="//@navigationRule.6/@navigationCase.1/@toViewId|" outlinks="pf159547320986721 pf159547320986722" inlinks="pf159547320986722" path="/PrivadaAdm/BodegaAdmin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PrivadaAdm/VerBodega.xhtml" id="pf159547320986723" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf159547320986721" path="/PrivadaAdm/VerBodega.xhtml"/>
+  <links id="pf15954732098662" target="pf159547320986611" source="pf15954732098661" outcome="editar"/>
+  <links id="pf15954732098663" target="pf15954732098661" source="pf15954732098661" outcome="actualizado"/>
+  <links id="pf15954732098664" target="pf15954732098661" source="pf15954732098661" outcome="eliminado"/>
+  <links id="pf159547320986613" target="pf159547320986717" source="pf159547320986612" outcome="modificarF"/>
+  <links id="pf159547320986614" target="pf159547320986612" source="pf159547320986612" outcome="borrarF"/>
+  <links id="pf159547320986615" target="pf159547320986612" source="pf159547320986717" outcome="guardado"/>
+  <links id="pf15954732098665" target="pf15954732098661" source="pf159547320986717" outcome="nn"/>
+  <links id="pf159547320986616" target="pf159547320986612" source="pf159547320986718" outcome="facturaCreada"/>
+  <links id="pf15954732098666" target="pf15954732098661" source="pf159547320986718" outcome="nn"/>
+  <links id="pf15954732098667" target="pf15954732098661" source="pf159547320986611" outcome="actualizado"/>
+  <links id="pf15954732098668" target="pf15954732098661" source="pf159547320986611" outcome="nn"/>
+  <links id="pf15954732098669" target="pf15954732098661" source="pf159547320986719" outcome="clienteR"/>
+  <links id="pf159547320986610" target="pf15954732098661" source="pf159547320986719" outcome="nn"/>
+  <links id="pf159547320986721" target="pf159547320986723" source="pf159547320986720" outcome="verP"/>
+  <links id="pf159547320986722" target="pf159547320986720" source="pf159547320986720" outcome="editadoB"/>
+</pageflow:Pageflow>
