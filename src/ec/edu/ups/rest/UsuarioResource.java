@@ -15,6 +15,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.omnifaces.cdi.Param;
+
 import javax.ws.rs.Produces;
 
 import ec.edu.ups.ejb.PersonaFacade;
@@ -71,10 +73,11 @@ public class UsuarioResource {
 	}
 	
 	
+	
 	@POST
 	@Path("/edit")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public Usuario editar(@FormParam("cedula") String cedula, @FormParam("nombre") String nombre, @FormParam("apellido") String apellido,
 			@FormParam("Direccion") String direccion, @FormParam("correo") String correo, @FormParam("contrasena") String contrasena, @FormParam("estado") String estado) {
 		
@@ -106,7 +109,6 @@ public class UsuarioResource {
 		System.out.println("creando nuevo usuario");
 		rol = ejbRolFacade.find(1);
 		System.out.println("rol de cliente: "+rol);
-		String estado = "activo";
 		usuario = new Usuario(cedula, nombre, apellido, direccion, correo, contrasena, rol);
 		System.out.println("persistiendo usuario");
 		ejbUsuarioFacade.create(usuario);
@@ -149,6 +151,8 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 		
 	}
+	
+	
 	
 	/*
 	@POST

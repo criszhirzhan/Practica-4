@@ -79,6 +79,12 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	return usu;
     }
     
+    public Usuario obtenerPorCorreo(String correo) {
+    	Query nq = em.createNativeQuery("SELECT * FROM Usuario WHERE correo=?", Usuario.class);
+    	nq.setParameter(1, correo);
+    	return (Usuario) nq.getSingleResult();
+    }
+    
     
     
 
