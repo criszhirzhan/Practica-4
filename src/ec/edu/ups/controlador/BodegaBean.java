@@ -24,13 +24,12 @@ import ec.edu.ups.entidad.Producto;
 import ec.edu.ups.entidad.Ubicacion;
 import ec.edu.ups.entidad.Usuario;
 
-
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 
 @ApplicationScoped
-public class BodegaBean implements Serializable{
-	
+public class BodegaBean implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -39,34 +38,31 @@ public class BodegaBean implements Serializable{
 	private ProductoFacade ejbProductoFacade;
 	@EJB
 	private UbicacionFacade ejbUbicacionFacade;
-	
+
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
-	
+
 	@EJB
 	private MovimientoBodegaFacade ejbMovBodegaFacade;
-	
 
-	
 	private List<Bodega> listaBodega;
 	private List<Producto> listaProducto;
 	private List<Ubicacion> listaUbicacion;
 	private List<Usuario> listAdministrador;
+	private List<Producto> listaProdDispo;
 
-	
-	
 	private String nombreBodega;
-	
+
 	private Producto producto;
 	private Ubicacion ubicacion;
 	private Usuario administrador;
 	private Bodega bodega;
 	private MovimientoBodega movBodega;
-	
+
 	private String cedulaAdm;
-	
+
 	/////
-	
+
 	private String provincia;
 	private String ciudad;
 	private String callePrincipal;
@@ -74,139 +70,200 @@ public class BodegaBean implements Serializable{
 	private String numero;
 	private int codigoBodega;
 	////
-	
+
 	private int resultadoPro;
 	private Ubicacion resultadoUbi;
 	private Usuario resultadoUsu;
-	
+
 	///
+
+	private int codigoProducto;
+	private int cantidadProducto;
+
+	////
 	private List<MovimientoBodega> listaProductosBodega;
-	
+
 	public BodegaBean() {
 		super();
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		listaBodega = ejbBodegaFacade.findAll();
-		listaBodega = ejbBodegaFacade.listarBodegas();
+		//listaBodega = ejbBodegaFacade.listarBodegas();
 		listaProducto = ejbProductoFacade.findAll();
-		listaProducto = ejbProductoFacade.listarProductos();
+		//listaProducto = ejbProductoFacade.listarProductos();
 		listAdministrador = ejbBodegaFacade.obtenerAdministradores();
-		System.out.println("listando administradores: "+listAdministrador);
+		System.out.println("listando administradores: " + listAdministrador);
 	}
-	
+
 	public void obtenerProducto(AjaxBehaviorEvent evento) {
 		this.producto = new Producto();
 		this.producto = ejbProductoFacade.find(this.producto);
 		if (producto != null) {
 			this.resultadoPro = ejbProductoFacade.count();
 		} else {
-			this.resultadoPro = 0; 
-		}	
+			this.resultadoPro = 0;
+		}
 	}
-	
+
 	public void obtenerUbicabion(AjaxBehaviorEvent evento) {
 		this.ubicacion = new Ubicacion();
 		this.ubicacion = ejbUbicacionFacade.find(this.ubicacion);
 		if (ubicacion != null) {
 			this.resultadoUbi = ejbUbicacionFacade.find(this.ubicacion);
 		} else {
-			this.resultadoUbi = null; 
-		}	
+			this.resultadoUbi = null;
+		}
 	}
-	
-
 
 	public void obtenerUsuario(AjaxBehaviorEvent evento) {
-		
+
 		this.administrador = new Usuario();
 		this.administrador = ejbUsuarioFacade.find(this.administrador);
 		if (administrador != null) {
 			this.resultadoUsu = ejbUsuarioFacade.find(this.administrador);
 		} else {
-			this.resultadoUsu = null; 
-		}	
+			this.resultadoUsu = null;
+		}
 	}
-	
-	public String add() {
-		
 
-		ejbUbicacionFacade.create(new Ubicacion(this.provincia, this.ciudad, this.callePrincipal, this.calleSecundaria, this.numero));
+	public String add() {
+
+		ejbUbicacionFacade.create(
+				new Ubicacion(this.provincia, this.ciudad, this.callePrincipal, this.calleSecundaria, this.numero));
 		ubicacion = ejbUbicacionFacade.buscarUbicacion(this.provincia, this.ciudad, this.numero);
-		
-		System.out.println("ubicacion creada: "+ubicacion);
-		
+
+		System.out.println("ubicacion creada: " + ubicacion);
+
 		Usuario administradors = new Usuario();
 		administradors = ejbUsuarioFacade.find(cedulaAdm);
-		System.out.println("usuario recuperado: "+administradors);
-		
-		ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion, administradors));
+		System.out.println("usuario recuperado: " + administradors);
+
+		ejbBodegaFacade.create(new Bodega(this.nombreBodega, this.ubicacion, administradors));
 		System.out.println("bodega ingresada");
 		System.out.println("recuperando lista de bodegas");
 		listaBodega = ejbBodegaFacade.findAll();
 		listAdministrador = ejbUsuarioFacade.findAll();
-		this.nombreBodega="";
-		this.provincia="";
-		this.ciudad="";
-		this.callePrincipal="";
-		this.calleSecundaria="";
-		this.numero="";
+		this.nombreBodega = "";
+		this.provincia = "";
+		this.ciudad = "";
+		this.callePrincipal = "";
+		this.calleSecundaria = "";
+		this.numero = "";
 		return null;
 	}
-	
+
+	public List<Producto> getListaProdDispo() {
+		return listaProdDispo;
+	}
+
+	public void setListaProdDispo(List<Producto> listaProdDispo) {
+		this.listaProdDispo = listaProdDispo;
+	}
+
 	public String delete(Bodega b) {
 		ejbBodegaFacade.remove(b);
 		listaBodega = ejbBodegaFacade.findAll();
 		return null;
 	}
-	
+
 	public String edit(Bodega b) {
 		b.setEditable(true);
 		return null;
 	}
-	
+
 	public String save(Bodega b) {
 		ejbBodegaFacade.edit(b);
 		b.setEditable(false);
 		return null;
 	}
-	
-	
+
 	//////
-	
+
 	public String deleteStock(MovimientoBodega b) {
 		ejbMovBodegaFacade.remove(b);
 		Bodega bod = ejbBodegaFacade.find(b.getBodega().getCodigoBodega());
-		listaProductosBodega = bod.getInventario(); 
+		this.listaProductosBodega = bod.getInventario();
 		return null;
 	}
-	
+
 	public String editStok(MovimientoBodega b) {
 		b.setEditable(true);
 		return null;
 	}
-	
+
 	public String saveStok(MovimientoBodega b) {
 		ejbMovBodegaFacade.edit(b);
 		b.setEditable(false);
 		return null;
 	}
 	/////
-	
-	
-	
-	
+
 	public String verProductos(Bodega b) {
 		listaProductosBodega = b.getInventario();
+		listaProdDispo = ejbProductoFacade.findAll();
+
 		this.bodega = b;
 		this.nombreBodega = b.getNombre();
-		
+		this.bodega = b;
+
 		return "verP";
 	}
-	
-	
-	
+
+	public String listarProductos(List<MovimientoBodega> l1, List<Producto> l2) {
+
+		for (int i = 0; i < l1.size(); i++) {
+			for (int j = 0; j < l2.size(); j++) {
+				
+				if(l2.get(i).equals(l1.get(j).getProducto())) {
+					this.listaProdDispo.remove(l2.get(1));
+					j=l2.size()+10;
+				}
+
+				
+			}
+		}
+
+		return null;
+	}
+
+	public String addProducto() {
+		Producto pro = new Producto();
+		pro = ejbProductoFacade.find(this.codigoProducto);
+		System.out.println("producto recuperado: " + pro);
+
+		this.cantidadProducto = pro.getStock();
+		System.out.println("stock del producto seleccionado: " + cantidadProducto);
+		if (cantidadProducto <= pro.getStock()) {
+			listaProductosBodega = ejbMovBodegaFacade.listarBodegaProductos(bodega.getCodigoBodega());
+			ejbMovBodegaFacade.create(new MovimientoBodega(bodega, pro, this.cantidadProducto));
+			System.out.println("agregado movimiento de bodega");
+			listarProductos(bodega.getInventario(), ejbProductoFacade.findAll());
+		} else if (this.cantidadProducto > pro.getStock()) {
+			System.out.println("error, no se puede ingresar un stock mayor al stock del producto");
+		}
+		this.cantidadProducto = 0;
+
+		return "productoAgregadoBodega";
+	}
+
+	public int getCantidadProducto() {
+		return cantidadProducto;
+	}
+
+	public void setCantidadProducto(int cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
+	}
+
+	public int getCodigoProducto() {
+		return codigoProducto;
+	}
+
+	public void setCodigoProducto(int codigoProducto) {
+		this.codigoProducto = codigoProducto;
+	}
+
 	public List<MovimientoBodega> getListaProductosBodega() {
 		return listaProductosBodega;
 	}
@@ -218,24 +275,31 @@ public class BodegaBean implements Serializable{
 	public BodegaFacade getEjbBodegaFacade() {
 		return ejbBodegaFacade;
 	}
+
 	public void setEjbBodegaFacade(BodegaFacade ejbBodegaFacade) {
 		this.ejbBodegaFacade = ejbBodegaFacade;
 	}
+
 	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
+
 	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
+
 	public UbicacionFacade getEjbUbicacionFacade() {
 		return ejbUbicacionFacade;
 	}
+
 	public void setEjbUbicacionFacade(UbicacionFacade ejbUbicacionFacade) {
 		this.ejbUbicacionFacade = ejbUbicacionFacade;
-	}	
+	}
+
 	public UsuarioFacade getEjbUsuarioFacade() {
 		return ejbUsuarioFacade;
 	}
+
 	public void setEjbUsuarioFacade(UsuarioFacade ejbUsuarioFacade) {
 		this.ejbUsuarioFacade = ejbUsuarioFacade;
 	}
@@ -243,66 +307,87 @@ public class BodegaBean implements Serializable{
 	public List<Bodega> getListaBodega() {
 		return listaBodega;
 	}
+
 	public void setListaBodega(List<Bodega> listaBodega) {
 		this.listaBodega = listaBodega;
 	}
+
 	public List<Producto> getListaProducto() {
 		return listaProducto;
 	}
+
 	public void setListaProducto(List<Producto> listaProducto) {
 		this.listaProducto = listaProducto;
 	}
+
 	public List<Ubicacion> getListaUbicacion() {
 		return listaUbicacion;
 	}
+
 	public void setListaUbicacion(List<Ubicacion> listaUbicacion) {
 		this.listaUbicacion = listaUbicacion;
 	}
+
 	public String getNombreBodega() {
 		return nombreBodega;
 	}
+
 	public void setNombreBodega(String nombreBodega) {
 		this.nombreBodega = nombreBodega;
 	}
+
 	public Producto getProducto() {
 		return producto;
 	}
+
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+
 	public Ubicacion getUbicacion() {
 		return ubicacion;
 	}
+
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
+
 	public int getResultadoPro() {
 		return resultadoPro;
 	}
+
 	public void setResultadoPro(int resultadoPro) {
 		this.resultadoPro = resultadoPro;
 	}
+
 	public List<Usuario> getListAdministrador() {
 		return listAdministrador;
 	}
+
 	public void setListAdministrador(List<Usuario> listAdministrador) {
 		this.listAdministrador = listAdministrador;
 	}
+
 	public Usuario getAdministrador() {
 		return administrador;
 	}
+
 	public void setAdministrador(Usuario administrador) {
 		this.administrador = administrador;
 	}
+
 	public Ubicacion getResultadoUbi() {
 		return resultadoUbi;
 	}
+
 	public void setResultadoUbi(Ubicacion resultadoUbi) {
 		this.resultadoUbi = resultadoUbi;
 	}
+
 	public Usuario getResultadoUsu() {
 		return resultadoUsu;
 	}
+
 	public void setResultadoUsu(Usuario resultadoUsu) {
 		this.resultadoUsu = resultadoUsu;
 	}
@@ -379,15 +464,6 @@ public class BodegaBean implements Serializable{
 		this.codigoBodega = codigoBodega;
 	}
 
-	
-	
-	
-
-	
 	/////
-	
-	
-	
-	
 
 }

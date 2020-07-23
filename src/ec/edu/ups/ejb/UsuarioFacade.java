@@ -79,6 +79,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	return usu;
     }
     
+    public Usuario iniciarSesion(Usuario emp){
+    	Usuario empleado = null;
+        String consulta;
+        try {
+            consulta = "SELECT u FROM Usuario u WHERE u.correo = ?1 and u.contrasena = ?2";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, emp.getCorreo());
+            query.setParameter(2,emp.getContrasena());
+            List<Usuario> lista = query.getResultList();
+            if (!lista.isEmpty()){
+                empleado = lista.get(0);
+            }
+        }catch (Exception e){
+
+        }
+        return empleado;
+    }
     
     
 

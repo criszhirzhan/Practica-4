@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
+<h:head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Productos</title>
 <link rel="stylesheet" type="text/css"
@@ -12,7 +14,11 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet" />
 <link rel="stylesheet" href="/Practica-4/CONFIG2/css/sb-admin-2.min.css" />
-</head>
+ <ui:define name="center-header">
+        <f:event listener="#{sesionControlador.validarRolAdministrador}" type="preRenderView"></f:event>
+    </ui:define>
+	
+</h:head>
 <h:body id="page-top">
 	<div id="wrapper">
 
@@ -120,9 +126,9 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Categoria</f:facet>
-							<h:inputText value="#{productoBean.categoria}" size="10"
+							<h:inputText value="#{productoBean.categoria.nombreCategoria}" size="10"
 								rendered="#{p.editable}" />
-							<h:outputText value="#{p.categoria}" rendered="#{not p.editable}" />
+							<h:outputText value="#{p.categoria.nombreCategoria}" rendered="#{not p.editable}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Pre. Compra</f:facet>
