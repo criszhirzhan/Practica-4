@@ -3,6 +3,7 @@ package ec.edu.ups.entidad;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -13,24 +14,24 @@ import javax.persistence.*;
 
 public class Bodega implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	@JsonbTransient
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigoBodega;
 
 	private String nombre;
-
+	
 	@OneToOne
 	@JoinColumn
 	private Ubicacion ubicacion;
-
+	@JsonbTransient
 	@OneToOne
 	@JoinColumn
 	private Usuario administrador;
-
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="bodega")
 	private List<MovimientoBodega> inventario;
-	
+	@JsonbTransient
 	@Transient
 	private boolean editable;
 

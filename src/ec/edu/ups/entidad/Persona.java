@@ -3,6 +3,7 @@ package ec.edu.ups.entidad;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,9 +24,9 @@ public class Persona implements Serializable {
 	private String direccion;
 
 	private String correo;
-	
+	@JsonbTransient
 	private String estado;
-
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="persona")
 	private List<Factura> facturas;
 	

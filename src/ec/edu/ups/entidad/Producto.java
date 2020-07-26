@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -14,30 +15,37 @@ import javax.persistence.*;
 
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoProducto;
+	
 	private String nombre;
 	
 	@ManyToOne
 	@JoinColumn
 	private Categoria categoria;
 	
+	@JsonbTransient
 	private double precioCompra;
+	
 	private double precioVenta;
+	
 	private int stock;
+	
+	@JsonbTransient
 	private Date fechaCompra;
 	private String marca;
 	
-	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
 	private List<FacturaDetalle> facturasDetalle;
 	
+	@JsonbTransient
 	@ManyToMany(mappedBy = "productos")
 	private List<Pedido> pedidos;
 
-
+	@JsonbTransient
 	@Transient
 	private boolean editable;
 	 
@@ -153,7 +161,7 @@ public class Producto implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
+	/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -213,7 +221,7 @@ public class Producto implements Serializable {
 			return false;
 		return true;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Producto [codigoProducto=" + codigoProducto + ", nombre=" + nombre + ", categoria=" + categoria

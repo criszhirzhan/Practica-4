@@ -3,21 +3,24 @@ package ec.edu.ups.entidad;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Entity
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@JsonbTransient
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoCategoria;
 	
 	private String nombreCategoria;
 	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="categoria")
 	private List<Producto> productos;
 	
+	@JsonbTransient
 	@Transient
 	private boolean editable;
 	

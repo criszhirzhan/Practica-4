@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -15,7 +16,7 @@ public class Rol implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	
+	@JsonbTransient
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigo;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -25,7 +26,7 @@ public class Pedido implements Serializable {
 	private Persona cliente;
 	private Date fecha;
 	
-	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Bodega bodega;

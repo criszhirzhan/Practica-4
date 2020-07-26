@@ -1,6 +1,8 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -13,7 +15,7 @@ public class Ubicacion implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	
+	@JsonbTransient
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoUbicacion;
@@ -22,6 +24,7 @@ public class Ubicacion implements Serializable {
 	private String ciudad;
 	private String callePrincipal;
 	private String calleSecundaria;
+	@JsonbTransient
 	private String numero;
 	
 
