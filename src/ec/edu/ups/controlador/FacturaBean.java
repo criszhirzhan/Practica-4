@@ -389,6 +389,7 @@ public class FacturaBean implements Serializable {
 			
 			}else {
 				this.cantidad=0;
+				this.producto = null;
 				this.disable=true;
 				this.nomproducto="No existen suficientes unidades";
 				return "insuficientes";
@@ -396,6 +397,7 @@ public class FacturaBean implements Serializable {
 		}else {
 			this.cantidad=0;
 			this.disable=true;
+			this.producto = null;
 			this.nomproducto="No existen el producto en la bodega";
 			return "faltantes";
 		}
@@ -511,7 +513,7 @@ public class FacturaBean implements Serializable {
 		facturaCabecera.setEstadoFactura(this.estadoFactura);
 		ejbFacturaFacade.edit(this.facturaCabecera);
 		limpiarCampos();
-		list = ejbFacturaFacade.listarFacturasActivas("delet");
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
 		return "guardado";
 	}
 
